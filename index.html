@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Tingua Azul – Humedal 3D</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Contenedor del canvas 3D -->
+  <div id="game-root"></div>
+
+  <!-- HUD y botones -->
+  <div id="hud">
+    <!-- Barra superior -->
+    <div id="top-bar">
+      <div id="progress">
+        <span id="facts-count">0</span>/<span id="facts-total">0</span> datos
+      </div>
+      <div id="top-icons">
+        <button class="icon-btn" id="btn-help">i</button>
+      </div>
+    </div>
+
+    <!-- Marco del minimapa -->
+    <div id="minimap-frame"></div>
+
+    <!-- Joystick táctil -->
+    <div id="joystick-wrapper">
+      <div id="joystick-base">
+        <div id="joystick-stick"></div>
+      </div>
+    </div>
+
+    <!-- Botón de salto -->
+    <button id="btn-jump">JUMP</button>
+
+    <!-- Botones inferiores (info, glosario, galería, consejos) -->
+    <div id="bottom-menu">
+      <button class="small-btn" id="btn-info-humedal" title="Información del humedal">ℹ️</button>
+      <button class="small-btn" id="btn-glosario" title="Glosario">📖</button>
+      <button class="small-btn" id="btn-galeria" title="Galería">🖼️</button>
+      <button class="small-btn" id="btn-consejos" title="Consejos para cuidar el humedal">💚</button>
+    </div>
+
+    <!-- Panel de información / datos -->
+    <div id="fact-panel" class="panel hidden">
+      <div class="panel-header">
+        <h2 id="fact-title"></h2>
+        <button id="panel-close-icon" class="panel-close-icon">✕</button>
+      </div>
+      <div id="fact-body" class="panel-body">
+        <p id="fact-text"></p>
+      </div>
+      <button id="fact-close" class="panel-close-btn">Cerrar</button>
+    </div>
+  </div>
+
+  <!-- Script principal como módulo -->
+  <script type="module" src="main.js"></script>
+</body>
+</html>
