@@ -1,7 +1,5 @@
 // Tingua Azul – Humedal 3D
 
-import * as THREE from "https://unpkg.com/three@0.152.2/build/three.module.js";
-
 // ---------- VARIABLES GLOBALES --------------
 let scene, camera, renderer, clock;
 let bird;
