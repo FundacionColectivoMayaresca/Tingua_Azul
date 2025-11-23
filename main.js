@@ -10,7 +10,9 @@ const gravity = -12;
 const moveSpeed = 6;
 const jumpSpeed = 7;
 const birdBaseHeight = -0.2;
-const cameraOffset = new THREE.Vector3(0, 7, -12);
+
+// la haremos dinámica (distinta en cel / pc)
+let cameraOffset = new THREE.Vector3(0, 7, -12);
 
 const keys = { w: false, a: false, s: false, d: false };
 
@@ -138,6 +140,23 @@ init();
 animate();
 
 function init() {
+  scene = new THREE.Scene();
+  scene.background = skyDay.clone();
+
+  const aspect = window.innerWidth / window.innerHeight;
+  const isPortrait = aspect < 1; // cel / pantalla vertical
+
+  const fov = isPortrait ? 75 : 60; // un poco más amplio en cel
+  camera = new THREE.PerspectiveCamera(fov, aspect, 0.1, 500);
+
+  // offset de cámara diferente en cel y en pc
+  cameraOffset = isPortrait
+    ? new THREE.Vector3(0, 11, -24) // más alto y lejos en cel
+    : new THREE.Vector3(0, 7, -12); // como estaba en pc
+
+}
+
+    function init() {
   scene = new THREE.Scene();
   scene.background = skyDay.clone();
 
@@ -1609,7 +1628,17 @@ function updateOrbs(delta) {
 // ---------- OTROS ----------------------------
 
 function onWindowResize() {
-  camera.aspect = window.innerWidth / window.innerHeight;
+  const aspect = window.innerWidth / window.innerHeight;
+  const isPortrait = aspect < 1;
+
+  camera.aspect = aspect;
+  camera.fov = isPortrait ? 75 : 60;   // mismo ajuste que en init
   camera.updateProjectionMatrix();
+
   renderer.setSize(window.innerWidth, window.innerHeight);
+
+  // re-calcular offset por si giras el cel
+  cameraOffset = isPortrait
+    ? new THREE.Vector3(0, 11, -24)
+    : new THREE.Vector3(0, 7, -12);
 }
